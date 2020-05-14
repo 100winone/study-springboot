@@ -1,5 +1,6 @@
 package com.winone.springboot.domain.posts;
 
+import com.winone.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor // @NoArgsConstructor - 기본 생성자 자동 추가, public Posts(){} 와 같은 효과
 @Entity // @Entity -  테이블과 링크될 클래스, 기본값으로 클래스의 카멜케이스 이름을 (_)으로 테이블 이름 매칭
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Id // @Id - 테이블의 PK, Spring Boot 2.0에서는 GenerationType.IDENTITY 옵션 추가해야 auto_increment가능
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,5 +29,10 @@ public class Posts {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
     }
 }
